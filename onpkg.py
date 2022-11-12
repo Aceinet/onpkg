@@ -3,7 +3,10 @@ import requests
 from rich.console import Console
 clear = lambda: os.system('clear')
 
-server = "https://bff7-176-59-14-200.eu.ngrok.io"
+rawserver = "https://raw.githubusercontent.com/Aceinet/o
+page = requests.get(rawserver)
+
+server = str(page.text).replace("\n", "")
 c = Console()
 try:
     if sys.argv[1] == "install":
