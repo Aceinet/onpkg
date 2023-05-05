@@ -3,7 +3,7 @@ import requests
 from rich.console import Console
 clear = lambda: os.system('clear')
 
-rawserver = "https://raw.githubusercontent.com/Aceinet/o
+rawserver = "https://raw.githubusercontent.com/Aceinet/onpkg/main/serverurl.txt"
 page = requests.get(rawserver)
 
 server = str(page.text).replace("\n", "")
