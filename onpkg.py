@@ -14,7 +14,9 @@ try:
             pkgurl = server + f"/pkgs/{sys.argv[2]}"
             c.print(f"Do you want to [green]install[/green] {sys.argv[2]} package? (y/n)")
             ans = input("> ")
-            if ans == "y": os.system(f"wget {pkgurl} -P ~/../usr/bin/")
+            if ans == "y": 
+                os.system(f"wget {pkgurl} -P ~/../usr/bin/")
+                os.system(f"chmod +x ~/../usr/bin/{sys.argv[2]}")
     if sys.argv[1] == "nosuremove":
         if sys.argv[2]:
             c.print(f"Do you want to [red]remove[/red] {sys.argv[2]} package? (y/n)")
