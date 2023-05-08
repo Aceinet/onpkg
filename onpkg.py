@@ -6,6 +6,9 @@ clear = lambda: os.system('clear')
 rawserver = "https://raw.githubusercontent.com/Aceinet/onpkg/main/serverurl.txt"
 page = requests.get(rawserver)
 
+usrdir = "~/.." # For termux
+#usrdir = "~/../.." # For other unix systems
+
 server = str(page.text).replace("\n", "")
 c = Console()
 try:
@@ -15,19 +18,19 @@ try:
             c.print(f"Do you want to [green]install[/green] {sys.argv[2]} package? (y/n)")
             ans = input("> ")
             if ans == "y": 
-                os.system(f"wget {pkgurl} -P ~/../usr/bin/")
-                os.system(f"chmod +x ~/../usr/bin/{sys.argv[2]}")
+                os.system(f"wget {pkgurl} -P {usrdir}/bin/")
+                os.system(f"chmod +x {usrdir}/bin/{sys.argv[2]}")
     if sys.argv[1] == "nosuremove":
         if sys.argv[2]:
             c.print(f"Do you want to [red]remove[/red] {sys.argv[2]} package? (y/n)")
             ans = input("> ")
-            if ans == "y": os.system(f"rm ~/../usr/bin/{sys.argv[2]}")
+            if ans == "y": os.system(f"rm {usrdir}/bin/{sys.argv[2]}")
 
     if sys.argv[1] == "suremove":
         if sys.argv[2]:
             c.print(f"Do you want to [red]remove[/red] {sys.argv[2]} package? (y/n)")
             ans = input("> ")
-            if ans == "y": os.system(f"sudo rm ~/../usr/bin/{sys.argv[2]}")
+            if ans == "y": os.system(f"sudo rm {usrdir}/bin/{sys.argv[2]}")
 
 except IndexError: print("""usage: [option]
 
