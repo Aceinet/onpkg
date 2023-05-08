@@ -12,6 +12,14 @@ usrdir = "~/.." # For termux
 server = str(page.text).replace("\n", "")
 c = Console()
 try:
+    if sys.argv[1] == "suinstall":
+        if sys.argv[2]:
+            pkgurl = server + f"/pkgs/{sys.argv[2]}"
+            c.print(f"Do you want to [green]install[/green] {sys.argv[2]} package? (y/n)")
+            ans = input("> ")
+            if ans == "y": 
+                os.system(f"sudo wget {pkgurl} -P {usrdir}/bin/")
+                os.system(f"sudo chmod +x {usrdir}/bin/{sys.argv[2]}")
     if sys.argv[1] == "install":
         if sys.argv[2]:
             pkgurl = server + f"/pkgs/{sys.argv[2]}"
@@ -35,6 +43,7 @@ try:
 except IndexError: print("""usage: [option]
 
 options:
-    install [package ]    | Install a package
+    install [package]     | Install a package
+    suinstall [package]   | Install a package
     nosuremove [package]  | Remove a package without sudo rights
     suremove [package]    | Remove a package with sudo rights""")
